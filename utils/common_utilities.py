@@ -1,3 +1,4 @@
+import json
 import logging
 from plyer import notification
 import winsound
@@ -49,4 +50,38 @@ def compare_and_update_file(file_path, new_content):
         # Play a Windows sound
         winsound.MessageBeep(winsound.MB_ICONASTERISK)
         logging.info("The file content is the same. No update is required.")
+        return False
+
+
+
+
+def compare_and_update_json_file(file_path, new_content):
+    current_content = read_json_file(file_path)
+
+    if current_content is None:
+        current_content = []
+
+    if Counter(current_content) != Counter(new_content):
+        write_json_file(file_path, new_content)
+        logging.info("The JSON file was updated.")
+
+        notification.notify(
+            title='New Registered Company has been found!!!',
+            message='New Company has been added to the list!!',
+            app_icon=None,
+            timeout=20,
+        )
+
+        winsound.MessageBeep(winsound.MB_ICONASTERISK)
+
+        return True
+    else:
+        notification.notify(
+            title='No new company!',
+            message='The list has NOT been changed.',
+            timeout=20,
+        )
+
+        winsound.MessageBeep(winsound.MB_ICONASTERISK)
+        logging.info("The JSON file content is the same. No update is required.")
         return False
