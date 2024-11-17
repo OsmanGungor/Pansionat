@@ -1,6 +1,5 @@
 import requests
 import json
-from requests.adapters import HTTPAdapter, Retry
 import pytest
 from pansionat_site.Models.Liecensed_company import LicensedCompany
 from utils.common_utilities import compare_and_update_file
