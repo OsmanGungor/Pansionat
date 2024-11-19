@@ -1,6 +1,4 @@
 import pytest
-from pansionat_site.index_page import IndexPage
-from pansionat_site.list_page import ListPage
 from utils.common_utilities import compare_and_update_file
 
 @pytest.mark.parametrize('search_term',['Деятельность по оказанию социальных услуг'])
