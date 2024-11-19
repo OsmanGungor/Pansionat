@@ -16,7 +16,3 @@ class BasePage:
             self.logger.error("navigation_error", url=self.url, error=str(e))
             raise
 
-    def is_at_url(self):
-        at_url = self.page.url == self.url
-        self.logger.info("current_url_check", expected_url=self.url, current_url=self.page.url, is_at_url=at_url)
-        return at_url
