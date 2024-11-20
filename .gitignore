@@ -1,0 +1,7 @@
+# Ignore specific directories
+.venv/
+.idea/
+.assets/
+
+# Ignore all HTML files in the repository
+*.html
