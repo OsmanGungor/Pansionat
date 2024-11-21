@@ -1,9 +1,10 @@
 name: Schedule Python Tests on Windows
 
 on:
-  schedule:
-    # This cron job runs at 00:00 (midnight) every day. Adjust the cron schedule as needed.
-    - cron: '02 16 * * *'
+
+  workflow_dispatch:
+#  schedule:
+#    - cron: '02 16 * * *'
 
 jobs:
   run-tests:
