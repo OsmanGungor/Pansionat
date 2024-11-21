@@ -2,8 +2,8 @@ import requests
 import json
 import pytest
 from pansionat_site.Models.Liecensed_company import LicensedCompany
-from utils.common_utilities import compare_and_update_file
-
+from utils.common_utilities import compare_and_write_file, send_windows_notification, \
+    send_email_notification
 base_url = "https://license.gov.by/api/licenses/getAllPaged"
 
 @pytest.mark.parametrize("activity", [78])
@@ -35,6 +35,8 @@ def test_new_company(activity, session):
             for item in json_data['items']
         ]
         company_names = [company.holder_name for company in license_items]
-        compare_and_update_file("C:\\Users\\osman_gungor\\Desktop\\pansionat\\list_api.txt",company_names)
+        is_updated = compare_and_write_file("C:\\Users\\osman_gungor\\Desktop\\pansionat\\list_api.txt", company_names)
+        send_windows_notification(is_updated)
+        send_email_notification(is_updated)
     except requests.exceptions.Timeout as e:
         print(f'Timed out: {e}')

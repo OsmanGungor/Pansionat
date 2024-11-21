@@ -1,5 +1,7 @@
 import pytest
-from utils.common_utilities import compare_and_update_file
+from utils.common_utilities import compare_and_update_file, compare_and_write_file, send_windows_notification, \
+    send_email_notification
+
 
 @pytest.mark.parametrize('search_term',['Деятельность по оказанию социальных услуг'])
 def test_visit_license_website(create_page_factory, search_term):
@@ -16,5 +18,6 @@ def test_visit_license_website(create_page_factory, search_term):
     list_page.click_drop_down_option()
     list_page.click_find_button()
     result_list=list_page.get_result_text()
-    compare_and_update_file("C:\\Users\\osman_gungor\\Desktop\\pansionat\\List.txt", result_list)
-
+    is_updated=compare_and_write_file("C:\\Users\\osman_gungor\\Desktop\\pansionat\\List.txt", result_list)
+    send_windows_notification(is_updated)
+    send_email_notification(is_updated)
