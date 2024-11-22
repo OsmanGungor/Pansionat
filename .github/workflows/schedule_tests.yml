@@ -40,7 +40,7 @@ jobs:
         git config --local user.email "osmangungor83@gmail.com"
         git config --local user.name "Osman Güngör"
         git add List.txt
-        git commit -m "Update List.txt with test results" || exit 0
+        git commit -m "Update List.txt with test results"
         git push origin HEAD:master
 
 
@@ -51,5 +51,5 @@ jobs:
         git config --local user.email "osmangungor83@gmail.com"
         git config --local user.name "Osman Güngör"
         git add list_api.txt 
-        git commit -m "Update list_api.txt with test results" || exit 0
+        git commit -m "Update list_api.txt with test results"
         git push origin HEAD:master
