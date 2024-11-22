@@ -1,5 +1,5 @@
 import pytest
-from utils.common_utilities import compare_and_update_file, compare_and_write_file, send_windows_notification, \
+from utils.common_utilities import compare_and_write_file, send_windows_notification, \
     send_email_notification
 
 
