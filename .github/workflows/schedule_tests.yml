@@ -41,7 +41,8 @@ jobs:
         git config --local user.name "Osman Güngör"
         git add List.txt
         git commit -m "Update List.txt with test results" || exit 0
-        git push --set-upstream origin HEAD:master
+        git push https://${{ secrets.PUSH_GITHUB_TOKEN }}@github.com/OsmanGungor/Pansionat.git HEAD:master
+
 
     - name: Commit and push if List_api.txt has changed
       env:
@@ -51,4 +52,4 @@ jobs:
         git config --local user.name "Osman Güngör"
         git add list_api.txt 
         git commit -m "Update list_api.txt with test results" || exit 0
-        git push --set-upstream origin HEAD:master
+        git push https://${{ secrets.PUSH_GITHUB_TOKEN }}@github.com/OsmanGungor/Pansionat.git HEAD:master
