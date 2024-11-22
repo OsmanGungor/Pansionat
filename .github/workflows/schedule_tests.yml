@@ -29,5 +29,4 @@ jobs:
       env:
         BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}  # Use the secret name you configured in GitHub Secrets
       run: |
-        export BREVO_API_KEY=$BREVO_API_KEY
         pytest
