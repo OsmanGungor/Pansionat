@@ -35,7 +35,7 @@ def test_new_company(activity, session):
             for item in json_data['items']
         ]
         company_names = [company.holder_name for company in license_items]
-        is_updated = compare_and_write_file("C:\\Users\\osman_gungor\\Desktop\\pansionat\\list_api.txt", company_names)
+        is_updated = compare_and_write_file("List_api.txt", company_names)
         send_windows_notification(is_updated)
         send_email_notification(is_updated)
     except requests.exceptions.Timeout as e:

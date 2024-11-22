@@ -1,7 +1,6 @@
 name: Schedule Python Tests on Windows
 
 on:
-
   workflow_dispatch:
 #  schedule:
 #    - cron: '02 16 * * *'
@@ -21,12 +20,31 @@ jobs:
 
     - name: Install pip
       run: python -m pip install --upgrade pip
+
     - name: Display requirements.txt
-      run: cat requirements.txt
+      run: type requirements.txt
+
     - name: Install dependencies
       run: pip install -r requirements.txt
+
     - name: Run tests
       env:
-        BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}  # Use the secret name you configured in GitHub Secrets
+        BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
       run: |
         pytest
+
+    - name: Commit and push if List.txt has changed
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add List.txt
+        git commit -m "Update List.txt with test results" || exit 0
+        git push
+
+    - name: Commit and push if List_api.txt has changed
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add list_api.txt 
+        git commit -m "Update list_api.txt with test results" || exit 0
+        git push

@@ -18,6 +18,6 @@ def test_visit_license_website(create_page_factory, search_term):
     list_page.click_drop_down_option()
     list_page.click_find_button()
     result_list=list_page.get_result_text()
-    is_updated=compare_and_write_file("C:\\Users\\osman_gungor\\Desktop\\pansionat\\List.txt", result_list)
+    is_updated=compare_and_write_file("List.txt", result_list)
     send_windows_notification(is_updated)
     send_email_notification(is_updated)
