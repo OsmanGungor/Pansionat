@@ -1,0 +1,32 @@
+name: Run Python Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      pytest_test_names:
+        description: 'Pytest test names (test_new_company or test_visit_license_website)'
+        required: true
+
+jobs:
+  run-tests:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.12'
+
+    - name: Create virtual environment
+      run: |
+        python -m venv .venv
+        source .venv/bin/activate
+
+    - name: Install dependencies
+      run: |
+        source .venv/bin/activate
+        pip install -r requirements.txt
+        playwright install --with-deps
+
