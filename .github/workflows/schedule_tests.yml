@@ -27,11 +27,19 @@ jobs:
     - name: Install Playwright browsers
       run: python -m playwright install
 
+    - name: List directory contents
+      run: |
+        dir
+        dir tests
+
+    - name: Show pytest configuration
+      run: pytest --collect-only -v
+
     - name: Run tests
       env:
         BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
       run: |
-        pytest
+        pytest -v
 
 #    - name: Commit and push if List.txt has changed
 #      env:
