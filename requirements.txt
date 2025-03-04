@@ -31,3 +31,6 @@ colorama==0.4.6
 pywin32-ctypes==0.2.3
 constants==0.6.0
 typing_extensions==4.12.2
+isort
+black
+ruff
