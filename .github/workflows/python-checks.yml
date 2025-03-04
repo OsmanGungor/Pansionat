@@ -1,0 +1,52 @@
+name: Python Checks
+
+on:
+  push:
+    branches:
+      - '*'  # This will run on all branch pushes
+  pull_request:
+    branches:
+      - main  # This will run on PRs to main
+
+jobs:
+  lint-and-format:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.12'  # Specify your Python version
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install black ruff isort
+
+    - name: Check formatting with Black
+      run: black --check .
+
+    - name: Sort imports with isort
+      run: isort --check-only --diff .
+
+    - name: Lint with Ruff
+      run: ruff check .
+
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.12'  # Specify your Python version
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt  # If you have a requirements file
+
+    - name: Run tests
+      run: python -m unittest discover tests  # Adjust this to your test command
