@@ -1,4 +1,4 @@
-name: Run Python Tests
+name: Run Tests
 
 on:
   workflow_dispatch:
@@ -47,17 +47,3 @@ jobs:
         else
           pytest -v -k "${{ github.event.inputs.pytest_test_names }}" --html=pytest_report.html --self-contained-html
         fi
-
-    - name: Display test results summary
-      if: always()
-      run: |
-        echo "Test Results Summary:"
-        (Get-Content -Path pytest_report.html) | Select-String "<h2>Summary</h2>" -Context 0,5
-
-    - name: Upload test results
-      uses: actions/upload-artifact@v2
-      if: always()
-      with:
-        name: test-results
-        path: |
-          pytest_report.html
