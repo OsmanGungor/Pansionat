@@ -1,4 +1,5 @@
 from structlog import get_logger
+
 from pansionat_site.base import BasePage
 
 

@@ -1,8 +1,9 @@
 import pytest
 import requests
 from playwright.sync_api import sync_playwright
-from pansionat_site.pagefactory import PageFactory
 from requests.adapters import HTTPAdapter, Retry
+
+from pansionat_site.pagefactory import PageFactory
 
 
 @pytest.fixture(scope="function")

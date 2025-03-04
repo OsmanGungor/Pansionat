@@ -1,4 +1,3 @@
-from playwright.sync_api import Page
 from utils.logging_config import get_logger
 
 

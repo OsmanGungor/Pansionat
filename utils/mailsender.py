@@ -1,8 +1,10 @@
 from __future__ import print_function
+
+import os
+from pprint import pprint
+
 import sib_api_v3_sdk
 from sib_api_v3_sdk.rest import ApiException
-from pprint import pprint
-import os
 
 api_key = os.environ.get("BREVO_API_KEY")
 

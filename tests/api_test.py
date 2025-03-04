@@ -1,11 +1,13 @@
-import requests
 import json
+
 import pytest
+import requests
+
 from pansionat_site.Models.Liecensed_company import LicensedCompany
 from utils.common_utilities import (
     compare_and_write_file,
-    send_windows_notification,
     send_email_notification,
+    send_windows_notification,
 )
 
 base_url = "https://license.gov.by/api/licenses/getAllPaged"

@@ -1,8 +1,10 @@
-from plyer import notification
 import winsound
 from collections import Counter
-from utils.mailsender import send_mail
+
+from plyer import notification
 from structlog import get_logger
+
+from utils.mailsender import send_mail
 
 logger = get_logger()
 
