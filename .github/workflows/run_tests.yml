@@ -26,25 +26,22 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
         restore-keys: |
           ${{ runner.os }}-pip-
 
-    - name: Create virtual environment
+    - name: Create and activate virtual environment
       run: |
         python -m venv .venv
         .\.venv\Scripts\Activate.ps1
 
     - name: Install dependencies
       run: |
-        .\.venv\Scripts\Activate.ps1
         pip install -r requirements.txt
         pip install pytest-html
-        playwright install --with-deps
 
     - name: Run Tests
       run: |
-        .\.venv\Scripts\Activate.ps1
         if [ -z "${{ github.event.inputs.pytest_test_names }}" ]; then
           pytest -v --html=pytest_report.html --self-contained-html
         else
@@ -55,7 +52,7 @@ jobs:
       if: always()
       run: |
         echo "Test Results Summary:"
-        cat pytest_report.html | grep -A 5 "<h2>Summary</h2>"
+        (Get-Content -Path pytest_report.html) | Select-String "<h2>Summary</h2>" -Context 0,5
 
     - name: Upload test results
       uses: actions/upload-artifact@v2
