@@ -17,6 +17,7 @@ def create_page_factory():
     browser.close()
     playwright.stop()
 
+
 @pytest.fixture(scope="session")
 def session():
     session = requests.Session()

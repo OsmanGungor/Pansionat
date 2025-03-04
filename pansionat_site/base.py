@@ -1,6 +1,7 @@
 from playwright.sync_api import Page
 from utils.logging_config import get_logger
 
+
 class BasePage:
     def __init__(self, page, url):
         self.page = page
@@ -15,4 +16,3 @@ class BasePage:
         except Exception as e:
             self.logger.error("navigation_error", url=self.url, error=str(e))
             raise
-

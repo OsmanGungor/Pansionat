@@ -1,16 +1,23 @@
 from structlog import get_logger
 from pansionat_site.base import BasePage
 
+
 class ListPage(BasePage):
     def __init__(self, page):
         super().__init__(page, "https://license.gov.by/license/view/")
         self.logger = get_logger()
         self.advanced_search_locator = "xpath=//div[@class='ant-collapse-header']"
-        self.search_type_of_activity_box = "xpath=(//div[@class='ant-select-selection__placeholder'])[4]"
+        self.search_type_of_activity_box = (
+            "xpath=(//div[@class='ant-select-selection__placeholder'])[4]"
+        )
         self.search_type_of_activity_input_box = "xpath=//div[@class='ant-collapse-content-box']//span[text()='Вид деятельности']/following-sibling::div[1]//input"
-        self.dropdown_option_locator = "xpath=//li[@title='Деятельность по оказанию социальных услуг']"
+        self.dropdown_option_locator = (
+            "xpath=//li[@title='Деятельность по оказанию социальных услуг']"
+        )
         self.find_button_locator = "xpath=//button[@class='ant-btn ant-btn-primary']"
-        self.results_locator = "xpath=//tr[@class='ant-table-row ant-table-row-level-0']//td[3]/p"
+        self.results_locator = (
+            "xpath=//tr[@class='ant-table-row ant-table-row-level-0']//td[3]/p"
+        )
         self.logger.info("list_page_initialized", url=self.url)
 
     def click_advanced_search(self):
@@ -24,7 +31,9 @@ class ListPage(BasePage):
 
     def click_type_of_activity(self):
         try:
-            self.page.wait_for_selector(self.search_type_of_activity_box, state="visible")
+            self.page.wait_for_selector(
+                self.search_type_of_activity_box, state="visible"
+            )
             self.page.click(self.search_type_of_activity_box)
             self.logger.info("type_of_activity_clicked")
         except Exception as e:
