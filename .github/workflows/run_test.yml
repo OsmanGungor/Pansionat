@@ -1,11 +1,13 @@
 name: Run Test
 
 on:
-  workflow_dispatch:
-    inputs:
-      pytest_test_names:
-        description: 'Pytest test names (e.g., test_new_company or test_visit_license_website)'
-        required: false
+  push:
+    branches:
+      - '*'  # This will run on all branch pushes
+  pull_request:
+    branches:
+      - main  # This will run on PRs to main
+
 
 jobs:
   run-tests:
