@@ -2,6 +2,11 @@ name: Run Tests Manually
 
 on:
   workflow_dispatch:
+    inputs:
+      testname:
+        description: 'Name of the test to run'
+        required: false
+        default: ''
 
 jobs:
   build:
@@ -23,4 +28,4 @@ jobs:
         shell: bash
       - name: Test with pytest
         run: |
-          pytest --version
+          pytest ${{ github.event.inputs.testname }}
