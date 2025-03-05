@@ -14,7 +14,7 @@ on:
         # Default value if no value is explicitly provided
         default: ''
         # Input has to be provided for the workflow to run
-        required: true
+        required: false
         # The data type of the input
         type: string
 
