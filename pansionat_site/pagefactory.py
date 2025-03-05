@@ -7,12 +7,9 @@ class PageFactory:
         self.page = page
 
     def get_page_instance(self, page_name):
-        if page_name == 'index_page':
+        if page_name == "index_page":
             return IndexPage(self.page)
-        elif page_name == 'list_page':
+        elif page_name == "list_page":
             return ListPage(self.page)
         else:
             raise f"Unable to create the instance of: {page_name})"
-
-
-

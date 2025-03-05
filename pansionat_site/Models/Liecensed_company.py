@@ -1,5 +1,14 @@
 class LicensedCompany:
-    def __init__(self, id, generated_number, activity_id, activity_code, activity_name, unp, holder_name):
+    def __init__(
+        self,
+        id,
+        generated_number,
+        activity_id,
+        activity_code,
+        activity_name,
+        unp,
+        holder_name,
+    ):
         self.id = id
         self.generated_number = generated_number
         self.activity_id = activity_id

@@ -1,0 +1,34 @@
+name: Lint Checks
+
+on:
+  push:
+    branches:
+      - '*'  # This will run on all branch pushes
+  pull_request:
+    branches:
+      - main  # This will run on PRs to main
+
+jobs:
+  lint-and-format:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.12'  # Specify your Python version
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install black ruff isort
+
+    - name: Check formatting with Black
+      run: black --check .
+
+    - name: Sort imports with isort
+      run: isort --check-only --diff .
+
+    - name: Lint with Ruff
+      run: ruff check .
