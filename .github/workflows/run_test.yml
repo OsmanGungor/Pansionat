@@ -23,6 +23,9 @@ jobs:
     - name: Setup Playwright
       run: npx playwright install
       shell: bash
+    - name: Check Playwright browsers
+      run: npx playwright install-info
+      shell: bash
     - name: Run tests with pytest
       run: |
         pytest
