@@ -28,4 +28,5 @@ jobs:
         shell: bash
       - name: Test with pytest
         run: |
-          pytest ${{ github.event.inputs.testname }}
+          pytest -k ${{ github.event.inputs.testname }}
+
