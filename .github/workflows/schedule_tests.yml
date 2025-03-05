@@ -43,23 +43,23 @@ jobs:
         BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
       run: pytest -v
 
-#    - name: Commit and push if List.txt has changed
-#      env:
-#        PUSH_GITHUB_TOKEN: ${{ secrets.PUSH_GITHUB_TOKEN }}
-#      run: |
-#        git config --local user.email "osmangungor83@gmail.com"
-#        git config --local user.name "Osman Güngör"
-#        git add List.txt
-#        git commit -m "Update List.txt with test results"
-#        git push origin HEAD:master
-#
-#
-#    - name: Commit and push if List_api.txt has changed
-#      env:
-#        PUSH_GITHUB_TOKEN: ${{ secrets.PUSH_GITHUB_TOKEN }}
-#      run: |
-#        git config --local user.email "osmangungor83@gmail.com"
-#        git config --local user.name "Osman Güngör"
-#        git add list_api.txt
-#        git commit -m "Update list_api.txt with test results"
-#        git push origin HEAD:master
+    - name: Commit and push if List.txt has changed
+      env:
+        PUSH_GITHUB_TOKEN: ${{ secrets.PUSH_GITHUB_TOKEN }}
+      run: |
+        git config --local user.email "osmangungor83@gmail.com"
+        git config --local user.name "Osman Güngör"
+        git add List.txt
+        git commit -m "Update List.txt with test results"
+        git push origin HEAD:master
+
+
+    - name: Commit and push if List_api.txt has changed
+      env:
+        PUSH_GITHUB_TOKEN: ${{ secrets.PUSH_GITHUB_TOKEN }}
+      run: |
+        git config --local user.email "osmangungor83@gmail.com"
+        git config --local user.name "Osman Güngör"
+        git add list_api.txt
+        git commit -m "Update list_api.txt with test results"
+        git push origin HEAD:master
