@@ -23,7 +23,7 @@ jobs:
         shell: bash
       - name: Test with pytest
         run: |
-          coverage run -m pytest  -v -s
+          pytest --version
       - name: Generate Coverage Report
         run: |
           coverage report -m
