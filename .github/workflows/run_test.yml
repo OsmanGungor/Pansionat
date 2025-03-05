@@ -25,8 +25,8 @@ jobs:
         npm install playwright
         npx playwright install --with-deps
       shell: bash
-    - name: Check Playwright browsers
-      run: npx playwright install-info
+    - name: Check Playwright version
+      run: npx playwright --version
       shell: bash
     - name: Run tests with pytest
       run: |
