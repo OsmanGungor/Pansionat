@@ -1,33 +1,28 @@
-name: Run Manually
+name: Run Tests Manually
 
 on:
-  workflow_dispatch:
+    workflow_dispatch:
 
 jobs:
   build:
-
     runs-on: windows-latest
+    strategy:
+      matrix:
+        python-version: ["3.12"]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python 3.12
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.12'
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install pytest
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      shell: bash
-    - name: Install Playwright
-      run: |
-        npm install playwright
-        npx playwright install --with-deps
-      shell: bash
-    - name: Check Playwright version
-      run: npx playwright --version
-      shell: bash
-    - name: Run tests with pytest
-      run: |
-        pytest
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Test with pytest
+        run: |
+          coverage run -m pytest  -v -s
+      - name: Generate Coverage Report
+        run: |
+          coverage report -m
